@@ -24,7 +24,7 @@
                         <div class="col-xs-12">
                                     
                                 <!---->
-                                <a href="<?php echo site_url('students/form/id/0/parent/school/parent_id/1'); ?>" class="btn btn-app btn-success btn-xs" style="float:right;">
+                                <a href="<?php echo $record->getAddNewLink() ?>" class="btn btn-app btn-success btn-xs" style="float:right;">
 				  <i class="icon-plus bigger-160"></i>
 				  Nuevo 
 				</a>
@@ -58,12 +58,10 @@
                                             </div>
                                   <table id="sample-table-2" class="table table-striped table-bordered table-hover dataTable" aria-describedby="sample-table-2_info">
                                                 <thead>
-                                                        <tr role="row"><th class="center sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="
-
-
-
-
-                                                                " style="width: 58px;">
+                                                        <tr role="row">
+                                                                <th 
+                                                                
+                                                                class="center sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="" style="width: 58px;">
                                                                         <label>
                                                                                 <input type="checkbox" class="ace">
                                                                                 <span class="lbl"></span>
@@ -72,13 +70,26 @@
                                                                 <th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Domain: activate to sort column ascending" style="width: 163px;">
                                                                     <a href=""><?php $record->sortbyfield('first_name');?>  Nombre </a>
                                                                 </th>
-                                                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 117px;">Price</th><th class="hidden-480 sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Clicks: activate to sort column ascending" style="width: 128px;">Clicks</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="
+                                                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 117px;">
+                                                                    Código 
+                                                                </th>
+                                                                <th class="hidden-480 sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Clicks: activate to sort column ascending" style="width: 128px;">
+                                                                    Precio 
+                                                                </th>
+                                                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="
 
                                                                         Update
                                                                 : activate to sort column ascending" style="width: 191px;">
-                                                                        <i class="icon-time bigger-110 hidden-480"></i>
+                                                                    
+                                                                    Status    
                                                                         
-                                                                </th><th class="hidden-480 sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 157px;">Status</th><th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="" style="width: 168px;"></th></tr>
+                                                                </th>
+                                                                
+                                                                <th class="hidden-480 sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 157px;">
+                                                                    
+                                                                </th>
+                                                               
+                                                        </tr>
                                                 </thead>
 
 
@@ -99,16 +110,23 @@
                                                                 </td>
 
                                                                 <td class=" ">
-                                                                        <a href="<?php echo $row->getEditLink() ?>"><?php echo "{$row->first_name} {$row->last_name} {$row->mother_name}" ?></a>
+                                                                        <a href="<?php echo $row->getEditLink() ?>"><?php echo "{$row->name}" ?></a>
                                                                 </td>
-                                                                <td class=" ">$45</td>
-                                                                <td class="hidden-480 ">3,330</td>
-                                                                <td class=" ">Feb 12</td>
+                                                                 <td class=" ">
+                                                                      <?php echo $row->code; ?>
+                                                                    
+                                                                </td>
+                                                                <td class=" ">
+                                                                      $ <?php echo $row->price; ?>
+                                                                    
+                                                                </td>
+                                                                
+                                                                
 
                                                                 <td class="hidden-480 ">
-                                                                        <span class="label label-sm label-warning">Expiring</span>
+                                                                        <span class="label label-sm label-warning">Activo</span>
                                                                 </td>
-
+                                                                <!--- actions --->    
                                                                 <td class=" "  align="center">
                                                                         <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
                                                                                 <a class="blue" href="#">

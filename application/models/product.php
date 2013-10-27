@@ -1,15 +1,15 @@
 <?php
 require_once 'ParentModel.php';
-class student extends ParentModel
+class product extends ParentModel
 {
-    public $has_many = array('group');
+    public $has_many = array('group','image');
     public $has_one = array('school');
     
     function __construct($id = null) {
         
         
         $config = array(
-                    'controller_name'=>'students',
+                    'controller_name'=>'products',
                     'form_title'=>'Editar Alumno'
         );
         

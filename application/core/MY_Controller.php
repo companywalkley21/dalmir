@@ -71,12 +71,7 @@ class MY_Controller extends CI_Controller {
         
         $object = new $ModelName();
         
-        if ($ModelName!='School')
-        {
-        $school_id = 1;
-        $object->where('school_id',$school_id);        
-        
-        }
+      
 
         //echo $object;
         //echo $this->controller_name;
@@ -117,12 +112,14 @@ class MY_Controller extends CI_Controller {
 
         //@TODO parameter validation 
 
-        $id= $params['id'];
+    //    $id= $params['id'];
+        
+        /*
         $parent = $params['parent'];
         $parent_id = $params['parent_id'];
          
-         $p = new $parent($parent_id);
-        
+        $p = new $parent($parent_id);
+        */
       //  echo "id is $id ";
         
         $this->id = $id;
@@ -140,11 +137,72 @@ class MY_Controller extends CI_Controller {
         
         
      
+       
+        $upload_data = $this->uploads();
         
-        $school= new school($id);
-        $school->save($object);
+        /*handle uploads */
+        if (!empty($upload_data))
+        {
+            
+            foreach($upload_data as $uK => $uV)
+            {
+                echo "<pre>";
+                print_r($uV);
+                echo "</pre>";
+                $this->load->library('image_lib'); 
+                $this->image_lib->clear();
+                 $config['dynamic_output']=false;   
+               
+                $config['source_image']	= $uV['full_path'];//'/path/to/image/mypic.jpg';
+              //              $config['create_thumb'] = TRUE;
+                $config['maintain_ratio'] = TRUE;
+                $config['width']	 = 500;
+                $config['height']	= 500;
+                
+              //  $config['new_image'] = './uploads/thumb/';
+                
+             
+                
+               //$this->image_lib->resize();
+             
+             //   $config = null;
+               // $this->image_lib->clear();
+                $config['image_library'] = 'gd2';
+                 $config['dynamic_output']=false;
+                $config['wm_text'] = 'Dalmir - Bisuteria';
+                $config['wm_type'] = 'text';
+                //$t = 'uploads/thumb/Calavera8_thumb.png';
+                 //  $config['wm_overlay_path'] = $t;
+                $config['wm_font_path'] = 'system/fonts/texb.ttf';
+                $config['wm_font_size']	= '26';
+                $config['wm_font_color'] = 'cccccc';
+                $config['wm_vrt_alignment'] = 'middle';
+                $config['wm_hor_alignment'] = 'center';
+                $config['wm_padding'] = '0';
+   
+              
+                
+                
+             
+             
+                   $this->image_lib->initialize($config); 
+                
+             
+              $this->image_lib->resize();
+              $this->image_lib->watermark();
+                
+                $i = new Image();
+                foreach($uV as $f=>$v)
+                {
+                    $i->$f = $v;
+                    
+                }
+                $i->save();
+                $object->save($i);
+            }
+        }
         
-        
+     //   die();
         
         $action= $_POST['action'];
         if ($action=="stay")
@@ -170,6 +228,8 @@ class MY_Controller extends CI_Controller {
         
         $parts['menu']=$header  = $this->Menu();
         $parts['content']=$header  = $this->Content();
+        $parts['scripts']=$header  = $this->Scripts();
+        
         //$parts['footer']=$header  = $this->Header();
         //$parts = array();
         return $this->parser->parse('layout',$parts,true);
@@ -304,5 +364,70 @@ class MY_Controller extends CI_Controller {
        
        
     }
+    function Scripts()
+    {
+        return '';
+    }
+    
+    /*image management*/
+    
+    function uploads()
+     {        
+
+             // echo "<pre>"; 
+              //print_R($_FILES);
+
+              //die();
+              $ret = array();
+
+
+              $this->load->library('upload');
+              $config['upload_path'] = './uploads/';
+              $config['allowed_types'] = 'gif|jpg|png|pdf|zip|psd|xls|rar';
+              //$config['max_size']	= '10000';
+              //$config['max_width']  = '1024';
+              //$config['max_height']  = '768';
+
+               foreach ($_FILES as $key => $value)
+               {
+                    
+                      if (!empty($value['name']))
+                      {
+                          // echo "--inside ---{$value['name']}";   
+
+                          $this->upload->initialize($config);
+                          if (!$this->upload->do_multi_upload($key))
+                          {
+
+                             // $errors = $this->upload->display_errors();
+                             //                                 var_dump($errors);
+                                                             // die();
+
+                          }
+                          else
+                          {
+                              $ret= $this->upload->get_multi_upload_data();
+                          }
+                      }
+                  }   
+
+       
+      
+      return $ret;
+
+
+     }
+
+     
+     function delete_image($id,$parent_id)
+     {
+         /*todo check for a resonable security */
+         
+         $i = new Product($parent_id);
+         $i->image->where('id',$id)->get(1)->delete();
+         
+         
+         
+     }
     
 }

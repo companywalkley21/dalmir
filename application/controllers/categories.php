@@ -1,15 +1,15 @@
 <?php
+require_once 'tree_controller.php';
 
-class students extends MY_Controller{
+class categories extends tree_controller{
     
     
     function __construct() {
         
         $config = array("controller_name"=>__CLASS__,
-                        "model_name"=>'student',
-                        'parent'=>'school',
-                        'parent_id'=>'1',
-                        'rowsTitle'=>"Alumnos");
+                        "model_name"=>'category',
+                       
+                        'rowsTitle'=>"Categorias");
         
         
     
@@ -22,6 +22,9 @@ class students extends MY_Controller{
         return __CLASS__;
     }
 
+    
+    
+    
 
 //    function save($id=null)
 //    {

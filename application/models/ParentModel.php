@@ -71,11 +71,20 @@ class ParentModel extends DataMapper{
         
     }
     
+    
+    
+    function getAddNewLink()
+    {
+        
+        return site_url("{$this->controller_name}/form/id/0/");
+        
+    }
+            
      function edit_link_field($thefield)
     {
          
         
-        $a = new Anchor($this->$thefield,  admin_url("/{$this->controller_name}/form/{$this->id}"));
+        $a = '<a href="'.site_url("/{$this->controller_name}/form/{$this->id}").'" >edit</a>';
         
        return "$a";
         
@@ -112,6 +121,7 @@ class ParentModel extends DataMapper{
     function checkDate($val,$field_name='')
     {
         if (empty($val)) return  ; 
+ 
         
         
         if ( 1 === preg_match('~^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}~', $val))
@@ -223,7 +233,7 @@ class ParentModel extends DataMapper{
     {
       
        
-           
+       /*    
        $dir = $this->controller->dir;
      
       //  echo $dir;
@@ -235,6 +245,8 @@ class ParentModel extends DataMapper{
        
        //echo "[[$dir]]";
        return; // site_url("{$this->controller_name}/action/sort/field/$field/dir/{$dir}");
+        * 
+        */
     }
     
     

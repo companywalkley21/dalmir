@@ -24,65 +24,35 @@
                                         </label>
 
                                         <div class="col-sm-9">
-                                                <input  value="<?php echo $record->first_name; ?>" 
+                                                <input  value="<?php echo $record->name; ?>" 
                                                         type="text" 
-                                                        name="first_name"
+                                                        name="name"
                                                         id="form-field-1" 
-                                                        placeholder="Nombre del Alumno" 
+                                                        placeholder="Nombre del producto" 
                                                         class="col-xs-10 col-sm-5">
                                         </div>
                                 </div>
                             <div class="space-4" ></div>
                              <div class="form-group">
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-1">
-                                            Apellido Paterno
+                                            Código
                                         </label>
 
                                         <div class="col-sm-9">
-                                                <input  value="<?php echo $record->last_name; ?>" 
+                                                <input  value="<?php echo $record->code; ?>" 
                                                         type="text" 
-                                                        name="last_name"
+                                                        name="code"
                                                         id="form-field-1" 
-                                                        placeholder="Nombre del Alumno" 
+                                                        placeholder="Codigo del Producto" 
                                                         class="col-xs-10 col-sm-5">
                                         </div>
                                 </div>
                             
                                 <div class="space-4" ></div>
 
-                                 <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">
-                                            Apellido Materno
-                                        </label>
-
-                                        <div class="col-sm-9">
-                                                <input  value="<?php echo $record->mother_name; ?>" 
-                                                        type="text" 
-                                                        name="mother_name"
-                                                        id="form-field-1" 
-                                                        placeholder="Nombre del Alumno" 
-                                                        class="col-xs-10 col-sm-5">
-                                        </div>
-                                </div>
-                            
-                                <div class="space-4" ></div>
+                               
                                 
-                                 <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">
-                                            Correo electronico
-                                        </label>
-
-                                        <div class="col-sm-9">
-                                                <input  value="<?php echo $record->email; ?>" 
-                                                        type="text" 
-                                                        name="email"
-                                                        id="form-field-1" 
-                                                        placeholder="Nombre del Alumno" 
-                                                        class="col-xs-10 col-sm-5">
-                                        </div>
-                                </div>
-                            
-                                <div class="space-4" ></div>
+                                 
                                 
                                 
                                 
@@ -134,4 +104,20 @@
                         <!-- PAGE CONTENT ENDS -->
                 </div><!-- /.col -->
         </div><!-- /.row -->
+        
+        <div class="row">
+                <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+
+                        <div id="dropzone">
+                                <form action="//dummy.html" class="dropzone">
+                                        <div class="fallback">
+                                                <input name="file" type="file" multiple="" />
+                                        </div>
+                                </form>
+                        </div><!-- PAGE CONTENT ENDS -->
+                </div><!-- /.col -->
+        </div><!-- /.row -->
+        
+        
 </div>

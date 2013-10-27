@@ -70,7 +70,7 @@ if ($_SERVER['SERVER_NAME']=='localhost')
     $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '';
-$db['default']['database'] = 'school';
+$db['default']['database'] = 'dalmir';
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
