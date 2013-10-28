@@ -2,7 +2,7 @@
 require_once 'ParentModel.php';
 class product extends ParentModel
 {
-    public $has_many = array('group','image');
+    public $has_many = array('group','image','category');
     public $has_one = array('school');
     
     function __construct($id = null) {
