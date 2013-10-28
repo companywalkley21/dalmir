@@ -251,9 +251,9 @@ abstract class TreeModel extends ParentModel{
     
     function buildUl($selected=array())
     {
-        echo "<pre>";
-        print_r($selected);
-        echo "</pre>";
+       // echo "<pre>";
+        //print_r($selected);
+        //echo "</pre>";
         $nodes = $this->getTree();
         
         $ul = '<div id="tree">';

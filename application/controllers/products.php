@@ -54,7 +54,7 @@ class products extends MY_Controller{
             {
 
                 $c = new category($category_id);
-                echo $c->name;
+                //echo $c->name;
                 $this->object->save($c);
 
             }
@@ -62,14 +62,15 @@ class products extends MY_Controller{
         
         }
         
+        parent::redirect();
         
     }
             
     
     function redirect() {
         
-        //parent::redirect();
         
+      
     }
     
     

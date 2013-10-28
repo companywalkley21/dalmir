@@ -203,7 +203,7 @@ class MY_Controller extends CI_Controller {
         
         $action= $_POST['action'];
         if ($action=="stay")
-        redirect("{$this->controller_name}/form/{$id}");
+        redirect("{$this->controller_name}/form/{$this->object->id}");
         else 
         redirect("{$this->controller_name}/");     
         
