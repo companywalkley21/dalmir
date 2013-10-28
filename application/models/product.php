@@ -10,7 +10,7 @@ class product extends ParentModel
         
         $config = array(
                     'controller_name'=>'products',
-                    'form_title'=>'Editar Alumno'
+                    'form_title'=>'Editar Producto'
         );
         
         
