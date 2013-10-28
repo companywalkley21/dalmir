@@ -90,6 +90,25 @@
                                 </div> 
                             
                             
+                               
+                               <div class="form-group">
+                                   
+                              <?php 
+                              
+                              $c = new category();
+                              
+                              $tree = $c->buildUl();
+                              echo $tree;
+                              
+                              
+                              
+                              ?>     
+                                   
+                                   
+                                   
+                                		
+                                </div> 
+                            
                                 <div class="space-4" ></div>
 
                                
