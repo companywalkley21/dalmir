@@ -16,8 +16,8 @@ class category extends TreeModel
             'other_field' => 'related_category',
             'join_self_as'=>'category',
             
-        )
-       
+        ),
+       'product'
        
         
     );

@@ -122,7 +122,7 @@ class ParentModel extends DataMapper{
     {
         if (empty($val)) return  ; 
  
-        
+        if (is_array($val)) return;
         
         if ( 1 === preg_match('~^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}~', $val))
         {

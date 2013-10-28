@@ -114,8 +114,10 @@ abstract class TreeModel extends ParentModel{
                
        }
         
-    // p($r);
-   
+     /*echo "<pre>";   
+     print_r($r);
+     echo "</pre>";
+   */
      return $r; 
         
         
@@ -246,6 +248,48 @@ abstract class TreeModel extends ParentModel{
         
     }
     
+    
+    function buildUl($selected=array())
+    {
+        echo "<pre>";
+        print_r($selected);
+        echo "</pre>";
+        $nodes = $this->getTree();
+        
+        $ul = '<div id="tree">';
+         
+        $ul.= $this->appendLi($nodes,$selected);
+        
+        $ul.='</div>';
+        return $ul;
+        
+        
+    }
+    
+    
+    function appendLi($nodes,$selected=array())
+    {
+        $o = '<ul>';
+        foreach ($nodes as $node)
+        {
+            $checked='';
+            if (in_array($node['id'], $selected))
+            $checked='checked';
+            else{
+                $checked='';
+            }
+            
+            $o.='<li>';
+            $o.= '<input type="checkbox" name="categories[]" value="'.$node['id'].'"  '.$checked.'   >';
+            $o.=$node['name'];
+            if (isset($node['children']))
+            $o.= $this->appendLi ($node['children'],$selected);
+            $o.='</li>';
+            
+        }
+        $o.='</ul>';
+        return $o;
+    }
    
     function configureTree() {
        

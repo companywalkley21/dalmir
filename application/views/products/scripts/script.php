@@ -1,3 +1,18 @@
+
+
+ 
+ <script type="text/javascript"
+            src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+ <link rel="stylesheet" type="text/css"
+          href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css"/>
+
+
+ <script type="text/javascript" src="<?php echo site_url()?>assets/tree/js/jquery.tree.js"></script>
+ <link rel="stylesheet" type="text/css" href="<?php echo site_url()?>assets/tree/css/jquery.tree.css"/>
+ 
+
+
+
 <script>
 function makeFileList() {
 			var input = document.getElementById("filesToUpload");
@@ -63,3 +78,8 @@ function makeFileList() {
         
     })(jQuery);
 </script>
+<script> 
+					$(document).ready(function (){
+							$('#tree').tree({});
+					});	
+</script> 

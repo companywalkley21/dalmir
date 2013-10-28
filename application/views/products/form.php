@@ -94,10 +94,21 @@
                                <div class="form-group">
                                    
                               <?php 
-                              
                               $c = new category();
+                             // echo $record->id;
+                              $c->where_related('product','id',$record->id)->get();
+                              $categories=array();
+                              $cats = $record->category->get()->all; 
+                             // echo "count ".count($cats);
                               
-                              $tree = $c->buildUl();
+                              if (!empty($cats)){
+                                    foreach($cats as $cat)
+                                    {
+                                        //echo $cat->name;
+                                        $categories[]=$cat->id;
+                                    }
+                              }
+                              $tree = $c->buildUl($categories);
                               echo $tree;
                               
                               

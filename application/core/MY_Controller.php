@@ -13,6 +13,7 @@ class MY_Controller extends CI_Controller {
     public $dir; 
     public $action;
     
+    public $object; 
     
     public $parent;
     public $parent_id;
@@ -146,33 +147,22 @@ class MY_Controller extends CI_Controller {
             
             foreach($upload_data as $uK => $uV)
             {
-                echo "<pre>";
-                print_r($uV);
-                echo "</pre>";
+               
                 $this->load->library('image_lib'); 
                 $this->image_lib->clear();
-                 $config['dynamic_output']=false;   
+                $config['dynamic_output']=false;   
                
-                $config['source_image']	= $uV['full_path'];//'/path/to/image/mypic.jpg';
-              //              $config['create_thumb'] = TRUE;
+                $config['source_image']	= $uV['full_path'];// path to the saved image.
+              
                 $config['maintain_ratio'] = TRUE;
                 $config['width']	 = 500;
                 $config['height']	= 500;
                 
-              //  $config['new_image'] = './uploads/thumb/';
-                
-             
-                
-               //$this->image_lib->resize();
-             
-             //   $config = null;
-               // $this->image_lib->clear();
                 $config['image_library'] = 'gd2';
-                 $config['dynamic_output']=false;
+             
                 $config['wm_text'] = 'Dalmir - Bisuteria';
                 $config['wm_type'] = 'text';
-                //$t = 'uploads/thumb/Calavera8_thumb.png';
-                 //  $config['wm_overlay_path'] = $t;
+               
                 $config['wm_font_path'] = 'system/fonts/texb.ttf';
                 $config['wm_font_size']	= '26';
                 $config['wm_font_color'] = 'cccccc';
@@ -180,16 +170,14 @@ class MY_Controller extends CI_Controller {
                 $config['wm_hor_alignment'] = 'center';
                 $config['wm_padding'] = '0';
    
-              
+                         
+                $this->image_lib->initialize($config); 
+                $this->image_lib->resize();
+                $this->image_lib->watermark();
                 
                 
-             
-             
-                   $this->image_lib->initialize($config); 
                 
-             
-              $this->image_lib->resize();
-              $this->image_lib->watermark();
+                
                 
                 $i = new Image();
                 foreach($uV as $f=>$v)
@@ -202,16 +190,24 @@ class MY_Controller extends CI_Controller {
             }
         }
         
-     //   die();
+        
+        $this->object = $object;
+        
+        $this->redirect();
+        
+      
+    }
+    
+    function redirect()
+    {
         
         $action= $_POST['action'];
         if ($action=="stay")
         redirect("{$this->controller_name}/form/{$id}");
         else 
         redirect("{$this->controller_name}/");     
+        
     }
-    
-    
     function _update($id=null)
     {
         $ModelName =  $this->model_name;
