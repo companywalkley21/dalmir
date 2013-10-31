@@ -42,26 +42,26 @@
                     </li>
                     
                     <li>
-                        <a href="<?php echo site_url('products')?>">
+                        <a href="<?php echo admin_url('products')?>">
                                     <i class="icon-text-width"></i>
                                     <span class="menu-text"> Productos </span>
                             </a>
                     </li>
                     
                     <li>
-                        <a href="<?php echo site_url('categories')?>">
+                        <a href="<?php echo admin_url('categories')?>">
                                     <i class="icon-text-width"></i>
                                     <span class="menu-text"> Categorias </span>
                             </a>
                     </li>
                      <li>
-                        <a href="<?php echo site_url('users')?>">
+                        <a href="<?php echo admin_url('users')?>">
                                     <i class="icon-text-width"></i>
                                     <span class="menu-text"> Usuarios </span>
                             </a>
                     </li>
                     <li>
-                            <a href="<?php echo site_url('orders')?>">
+                            <a href="<?php echo admin_url('orders')?>">
                                     <i class="icon-picture"></i>
                                     <span class="menu-text"> Ordenes </span>
                             </a>

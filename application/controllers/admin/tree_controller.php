@@ -13,6 +13,9 @@ class tree_controller extends MY_Controller
         
         
         $model = $this->model_name;
+        
+        //echo $model;
+        
         $p = new $model(null,$this);
         
         
@@ -21,7 +24,7 @@ class tree_controller extends MY_Controller
         
         $records =  $p->getTreeTable($except_id = null , $this->parent, $this->parent_id);
         $data['rowsTitle']='';
-        $data['records']=$records;
+        $data['rows']=$records;
         $data['record']=new category();
         
         return $this->load->view("categories/rows_categories",$data,true);

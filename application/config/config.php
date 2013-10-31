@@ -360,3 +360,8 @@ $config['proxy_ips'] = '';
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */
+
+
+/*custom config */
+
+$config['admin_dir']='admin';

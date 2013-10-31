@@ -26,14 +26,20 @@ class categories extends tree_controller{
     
     
 
-//    function save($id=null)
-//    {
-//        print_r($_POST);
-//        die();
-//        
-//    }
-//   
-    
+  function save($id=null)
+  {
+      
+      
+      parent::save($id);
+      //echo $_POST['parent_id'];
+      $this->object->saveParent($_POST['parent_id']);
+      
+      parent::redirect();
+  }
+   
+  function redirect() {
+      //parent::redirect();//preventing from bbeing called by the father
+  }  
   
     
     

@@ -9,7 +9,7 @@
 <div class="page-content">
 <div class="page-header">
         <h1>
-                <?php echo ''; ?>
+                <?php echo $rowsTitle; ?>
                 <small>
                         <i class="icon-double-angle-right"></i>
                         Static &amp; Dynamic Tablessss
@@ -24,7 +24,7 @@
                         <div class="col-xs-12">
                                     
                                 <!---->
-                                <a href="<?php echo $record->getNewLink(); ?>" class="btn btn-app btn-success btn-xs" style="float:right;">
+                                <a href="<?php echo $record->getAddNewLink() ?>" class="btn btn-app btn-success btn-xs" style="float:right;">
 				  <i class="icon-plus bigger-160"></i>
 				  Nuevo 
 				</a>
@@ -68,7 +68,7 @@
                                                                         </label>
                                                                 </th>
                                                                 <th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Domain: activate to sort column ascending" style="width: 163px;">
-                                                                    <a href="">  Nombre </a>
+                                                                    <a href=""><?php $record->sortbyfield('first_name');?>  Nombre </a>
                                                                 </th>
                                                                 <th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 117px;">
                                                                     Código 
@@ -110,14 +110,14 @@
                                                                 </td>
 
                                                                 <td class=" ">
-                                                                    <a href="<?php echo $row->getEditLink(); ?>"><?php echo "{$row->getLevelString()}{$row->name}" ?></a>
+                                                                        <a href="<?php echo $row->getEditLink() ?>"><?php echo "{$row->name}" ?></a>
                                                                 </td>
                                                                  <td class=" ">
-                                                                      <?php echo '' ?>
+                                                                      <?php echo $row->code; ?>
                                                                     
                                                                 </td>
                                                                 <td class=" ">
-                                                                      $ <?php echo'' ?>
+                                                                      $ <?php echo $row->price; ?>
                                                                     
                                                                 </td>
                                                                 

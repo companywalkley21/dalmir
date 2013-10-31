@@ -19,6 +19,9 @@ class ParentModel extends DataMapper{
     function __construct($id = NULL,$config=array()) {
         
        
+        //echo "id at parent model $id";
+        //die();
+        
         foreach($config as $property=>$value)
         {
             $this->$property = $value;
@@ -29,6 +32,7 @@ class ParentModel extends DataMapper{
         
         parent::__construct($id);
         
+       // echo "{$this->controller_name}";
      
         $this->CI = &get_instance();
         
@@ -58,8 +62,8 @@ class ParentModel extends DataMapper{
     function getEditLink()
     {
         
-     
-        return site_url("{$this->admin_dir}/$this->controller_name/form/{$this->id}");
+       
+        return admin_url($this->controller_name."/form/{$this->id}");
         
     }
     
@@ -67,7 +71,7 @@ class ParentModel extends DataMapper{
     {
         
      
-        return site_url("{$this->admin_dir}/$this->controller_name/form/");
+        return admin_url("$this->controller_name/form/");
         
     }
     
@@ -76,7 +80,7 @@ class ParentModel extends DataMapper{
     function getAddNewLink()
     {
         
-        return site_url("{$this->controller_name}/form/id/0/");
+        return admin_url("{$this->controller_name}/form/id/0/");
         
     }
             
@@ -92,7 +96,7 @@ class ParentModel extends DataMapper{
     }
     function getFormAction()
     {
-        return site_url("{$this->controller_name}/save/{$this->id}");
+        return admin_url("{$this->controller_name}/save/{$this->id}");
     }
     function saveFromPost($array = null)
     {

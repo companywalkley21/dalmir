@@ -30,8 +30,11 @@ class category extends TreeModel
     
     function __construct($id = NULL) {
         
-        
-        parent::__construct($id);
+         $config = array(
+                    'controller_name'=>'categories',
+                    'form_title'=>'Editar Categoria'
+        );
+        parent::__construct($id,$config);
     }
     function getModelName() {
         return 'category';
@@ -43,7 +46,7 @@ class category extends TreeModel
         return 'categories';
     }
     public function getChildField() {
-        return 'categorie_id';
+        return 'category_id';//categorie_id
     }
     
     public function getParentName() {

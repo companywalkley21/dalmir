@@ -100,7 +100,14 @@ class MY_Controller extends CI_Controller {
     {
           //echo $this->id;
           $ModelName = $this->model_name;
+          
+          //echo $ModelName;
+         // die();
+          
           $object = new $ModelName($this->id);
+          //echo $object->name;
+          
+          
           $data['record']= $object;
           return $this->load->view("{$this->controller_name}/form",$data,true);
     }
@@ -173,6 +180,7 @@ class MY_Controller extends CI_Controller {
                          
                 $this->image_lib->initialize($config); 
                 $this->image_lib->resize();
+                usleep(100);//give it time to finish resize
                 $this->image_lib->watermark();
                 
                 
@@ -203,9 +211,9 @@ class MY_Controller extends CI_Controller {
         
         $action= $_POST['action'];
         if ($action=="stay")
-        redirect("{$this->controller_name}/form/{$this->object->id}");
+        redirect(admin_url("{$this->controller_name}/form/{$this->object->id}"));
         else 
-        redirect("{$this->controller_name}/");     
+        redirect(admin_url("{$this->controller_name}/"));     
         
     }
     function _update($id=null)

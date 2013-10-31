@@ -23,8 +23,8 @@ abstract class TreeModel extends ParentModel{
     
     
     
-    function __construct($id = NULL) {
-        parent::__construct($id);
+    function __construct($id = NULL,$config = array()) {
+        parent::__construct($id,$config);
     }
     
     
@@ -222,13 +222,13 @@ abstract class TreeModel extends ParentModel{
             if ($dash)
             $l.="-";    
             else
-            $l.='<i style="padding-left:2px;padding-right:6px;" class="icon-angle-right"></i>';
+            $l.='-<i style="padding-left:2px;padding-right:6px;" class="icon-angle-right"></i>';
         }
         return $l;
     }
     
     
-    function getDropdownParent()
+    function getDropdownParent($selected)
     {
         $rows = $this->getTreeTable($this->id);
         $array = array();
@@ -239,7 +239,7 @@ abstract class TreeModel extends ParentModel{
             
         }
        
-        $d = new Dropdown("parent_id",$array);    
+        $d = new Dropdown("parent_id",$array,$selected);    
         
         $d->setClass('uniform');
         echo $d;
@@ -291,6 +291,80 @@ abstract class TreeModel extends ParentModel{
         return $o;
     }
    
+    
+    function saveParent($parent_id = null)
+    {
+        //echo "parent is ";
+        //echo "<br>";
+       // var_dump($parent_id);
+        
+        $linktable =  $this->getLinkTable();
+        $parent_field = $this->getParentField();
+        $child_field = $this->getChildField();
+        
+        if (empty($parent_id) )
+        {    
+           // echo "parent is empty";
+            
+           // $data[$parent_field]=$parent_id;
+            $data[$child_field]=$this->id;
+            
+            $this->db->where($data);
+            $this->db->delete($linktable);
+           // echo $this->db->last_query();die();
+            return; // nothing else to do here
+        }
+       
+       // die();
+        
+        //$data[$parent_field]=$parent_field;
+        $data[$child_field]= $this->id;
+        
+        
+        
+        $this->db->where($data);
+        $query = $this->db->get($linktable);
+        $r = $query->result();
+        if (!empty($r))
+        {
+            //$data[$parent_field]=$parent_id;
+            $this->where($child_field,$this->id);
+            $data[$parent_field]=$parent_id;
+            $this->db->update($linktable,$data);
+        }
+        else
+        {
+            $data[$parent_field]=$parent_id;
+            $this->db->insert($linktable,$data);
+        }
+        
+        
+    }
+    
+    
+    function getParentId()
+    {
+        $data[$this->getChildField()]=  $this->id;
+        $this->db->where($data);
+        $query = $this->db->get($this->getLinkTable(),1);
+        
+       
+            $array = $query->result_array();
+            if (!empty($array))
+            {
+                
+                return $array[0]['related_category_id'];
+            }
+           else
+           {
+               return '';
+           }
+            
+       
+        
+        
+    }
+    
     function configureTree() {
        
     $this->base_table = $this->getBaseTable();

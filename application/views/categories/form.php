@@ -32,6 +32,18 @@
                                                         class="col-xs-10 col-sm-5">
                                         </div>
                                 </div>
+                            
+                                 <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">
+                                            Categoría Padre
+                                        </label>
+
+                                        <div class="col-sm-9">
+                                               <?php echo $record->getDropdownParent($record->getParentId()); ?>
+                                        </div>
+                                </div>
+                            
+                            
                             <div class="space-4" ></div>
                              <div class="form-group">
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-1">
